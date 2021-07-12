@@ -1,10 +1,23 @@
 import React from 'react';
+import styles from './video_item.module.css';
 
-const VideoItem = (props) => (
-  <>
-    <h1>{props.video.snippet.title}</h1>
-    <h4>{props.video.snippet.publishedAt}</h4>
-  </>
-  );
+//deconstructing instead of "props"
+const VideoItem = ({ video: { snippet }}) => (
+  <ul className={styles.container}>
+    <div className={styles.video}>
+      <img
+        //before deconstructing props.video.snippet...
+        className={styles.thumbnail}
+        src={snippet.thumbnails.medium.url}
+        alt="video thumbnail"
+      />
+      <div className={styles.metadata}>
+        <p className={styles.title}>{snippet.title}</p>
+        <p className={styles.channel}>{snippet.channelTitle}</p>
+      </div>
+    </div>
+  </ul>
+);
 
 export default VideoItem;
+
