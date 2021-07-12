@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './app.module.css';
 import VideoList from './components/video_list/video_list';
 import SearchHeader from './components/search_header/search_header';
@@ -12,15 +12,17 @@ function App({ youtube }) {
     setSelectedVideo(video);
   };
 
-  const search = query => {
+  //useCallback은 메모리를 많이 사용함
+  const search = useCallback(query => {
+    setSelectedVideo(null);
     youtube
-      .search(query) //
+      .search(query) 
       .then(videos => setVideos(videos));
-  };
+  }, [youtube]);
 
   useEffect(() => {
     youtube
-      .mostPopular() //
+      .mostPopular() 
       .then(videos => setVideos(videos));
   }, []);
   return (
