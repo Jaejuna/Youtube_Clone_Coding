@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './video_item.module.css';
+import styles from '../video_item/video_item.module.css';
 
 //deconstructing instead of "props"
 const VideoItem = ({ video: { snippet }}) => (
